@@ -67,3 +67,8 @@ def read_root():
 def parse_pipeline(data:pipeline):
     Dag=is_dag(data.nodes,data.edges)
     return {'status': 'success',"num_nodes":len(data.nodes),"num_edges":len(data.edges),"is_dag":Dag}
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # <-- USE environment port
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
