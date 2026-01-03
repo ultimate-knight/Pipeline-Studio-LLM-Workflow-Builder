@@ -2,10 +2,12 @@
 
 
 export const SubmitButton = ({nodes,edges}) => {
+
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
     
     const sendRequest=async ()=>{
         const payload={nodes,edges};
-        const res=await fetch("http://localhost:8000/pipelines/parse",{
+        const res=await fetch(`${apiUrl}/pipelines/parse`,{
             method:"POST",
             headers:{ "Content-Type":"application/json" },
             body:JSON.stringify(payload)
