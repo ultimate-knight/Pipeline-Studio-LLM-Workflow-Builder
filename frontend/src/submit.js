@@ -1,16 +1,18 @@
 // submit.js
 
-"use client"
 export const SubmitButton = ({nodes,edges}) => {
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-    if (!apiUrl) {
+    console.log("apiurl",process.env.REACT_APP_API_URL)
+    console.log("All process.env:", process.env)
+console.log("NODE_ENV:", process.env.NODE_ENV)
+    console.log("All env vars:", Object.keys(process.env).filter(key => key.startsWith('NEXT_PUBLIC_')))
+    if (!process.env.REACT_APP_API_URL) {
     console.error("NEXT_PUBLIC_API_URL is missing");
   }
     
     const sendRequest=async ()=>{
         const payload={nodes,edges};
-        const res=await fetch(`${apiUrl}/pipelines/parse`,{
+        const res=await fetch(`${process.env.REACT_APP_API_URL}/pipelines/parse`,{
             method:"POST",
             headers:{ "Content-Type":"application/json" },
             body:JSON.stringify(payload)
