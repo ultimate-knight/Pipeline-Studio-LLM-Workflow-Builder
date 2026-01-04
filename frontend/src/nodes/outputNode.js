@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import {Position } from 'reactflow';
 import React,{Suspense} from 'react';
-const Basecomp=React.lazy(()=>import('../Components/Basecomp').then(module => ({ default: module.Basecomp })))
+import Basecomp from '../Components/Basecomp';
 
 export const OutputNode = ({ id, data }) => {
   const [currName, setCurrName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
@@ -12,8 +12,6 @@ export const OutputNode = ({ id, data }) => {
 
   console.log("id",id)
   return (
-    <Suspense fallback={<h3 className='text-black'>loading...</h3>}>
     <Basecomp id={id} data={data} title="Output" value={currName}  selectType={outputType} onSelectType={(e)=>setOutputType(e.target.value)} HandleType="target" handlePosition={Position.Left} handleId={`${id}-value`}/>
-    </Suspense>
   );
 }

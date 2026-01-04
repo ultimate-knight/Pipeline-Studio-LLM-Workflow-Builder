@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import { Handle, Position } from 'reactflow';
-import React,{Suspense} from 'react';
-const Textcomp=React.lazy(()=>import('../Components/Textcomp').then(module => ({ default: module.Textcomp })))
+import Textcomp from '../Components/Textcomp';
 
 
 export const TextNode = ({ id, data }) => {
@@ -11,8 +10,6 @@ export const TextNode = ({ id, data }) => {
 
 
   return (
-    <Suspense fallback={<h3 className='text-black'>loading...</h3>}>
     <Textcomp id={id} title="Text" heading="Text" value={currText}  type="source" handlePosition={Position.Right} handleId={`${id}-output`}/>
-    </Suspense>
   );
 }
