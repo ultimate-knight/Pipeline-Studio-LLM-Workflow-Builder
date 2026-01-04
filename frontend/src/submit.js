@@ -1,9 +1,12 @@
 // submit.js
 
-
+"use client"
 export const SubmitButton = ({nodes,edges}) => {
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (!apiUrl) {
+    console.error("NEXT_PUBLIC_API_URL is missing");
+  }
     
     const sendRequest=async ()=>{
         const payload={nodes,edges};
